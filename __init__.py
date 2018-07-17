@@ -20,9 +20,9 @@ def checkSpelling(word):
 
 def suggestCorrection(word):
     if not (checkSpelling(word)):
-        return filterDictWords(findClosest(word))
+        return edits2(edits1(word))
 
-def findClosest(word):
+def edits1(word):
     letters    = 'abcdefghijklmnopqrstuvwxyz'
     splits     = [(word[:i], word[i:])    for i in range(len(word) + 1)]
     deletes    = [L + R[1:]               for L, R in splits if R]
@@ -30,6 +30,13 @@ def findClosest(word):
     replaces   = [L + c + R[1:]           for L, R in splits if R for c in letters]
     inserts    = [L + c + R               for L, R in splits for c in letters]
     return set(deletes + transposes + replaces + inserts)
+
+def edits2(editedSet1):
+    editedSet2 = set ()
+    for word in editedSet1:
+        editedSet2 = editedSet2 | edits1(word)
+    return editedSet2
+    
 
 def filterDictWords(rawCandidates):
     candidateSet = set()
