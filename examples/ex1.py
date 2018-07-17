@@ -12,6 +12,8 @@ testword = sys.argv[1]
 
 print(init.checkSpelling(testword))
 
+print(init.suggestCorrection(testword))
+
 
 
 
