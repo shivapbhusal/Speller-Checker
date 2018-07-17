@@ -14,6 +14,11 @@ print(init.checkSpelling(testword))
 
 print(init.suggestCorrection(testword))
 
+result = init.suggestCorrection(testword)
+
+for word in result:
+    print(word, init.getProbability(word))
+
 
 
 

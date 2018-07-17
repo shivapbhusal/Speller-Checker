@@ -5,6 +5,9 @@ A main file to check the spelling
 import re
 from collections import Counter
 
+def getAllWords(text):
+    return re.findall(r'\w+', text.lower())
+
 wordSet = set()
 
 with open('texts/wordList.txt', 'r') as wordFile:
@@ -13,6 +16,9 @@ with open('texts/wordList.txt', 'r') as wordFile:
         wordSet.add(word)
 
 wordFile.close()
+
+WORDS = Counter(getAllWords(open('texts/big.txt').read()))
+print(WORDS)
 
 def checkSpelling(word):
     if word in wordSet:
@@ -23,7 +29,7 @@ def checkSpelling(word):
 
 def suggestCorrection(word):
     if not (checkSpelling(word)):
-        return edits2(edits1(word))
+        return filterDictWords(edits2(edits1(word)))
 
 def edits1(word):
     letters    = 'abcdefghijklmnopqrstuvwxyz'
@@ -47,11 +53,6 @@ def filterDictWords(rawCandidates):
         if word in wordSet:
             candidateSet.add(word)
     return candidateSet
-
-def getAllWords(text):
-    return re.findall(r'\w+', text.lower())
-
-WORDS = Counter(getAllWords(open('texts/big.txt').read()))
 
 def getProbability(word, N=sum(WORDS.values())):
     return WORDS[word] / N
