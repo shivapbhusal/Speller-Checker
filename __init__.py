@@ -20,7 +20,7 @@ def checkSpelling(word):
 
 def suggestCorrection(word):
     if not (checkSpelling(word)):
-        return findClosest(word)
+        return filterDictWords(findClosest(word))
 
 def findClosest(word):
     letters    = 'abcdefghijklmnopqrstuvwxyz'
@@ -30,4 +30,11 @@ def findClosest(word):
     replaces   = [L + c + R[1:]           for L, R in splits if R for c in letters]
     inserts    = [L + c + R               for L, R in splits for c in letters]
     return set(deletes + transposes + replaces + inserts)
+
+def filterDictWords(rawCandidates):
+    candidateSet = set()
+    for word in rawCandidates:
+        if word in wordSet:
+            candidateSet.add(word)
+    return candidateSet
     
