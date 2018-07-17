@@ -2,9 +2,12 @@
 A main file to check the spelling
 
 '''
+import re
+from collections import Counter
+
 wordSet = set()
 
-with open('wordList.txt', 'r') as wordFile:
+with open('texts/wordList.txt', 'r') as wordFile:
     for word in wordFile:
         word = word.strip()
         wordSet.add(word)
@@ -44,4 +47,12 @@ def filterDictWords(rawCandidates):
         if word in wordSet:
             candidateSet.add(word)
     return candidateSet
+
+def getAllWords(text):
+    return re.findall(r'\w+', text.lower())
+
+WORDS = Counter(getAllWords(open('texts/big.txt').read()))
+
+def getProbability(word, N=sum(WORDS.values())):
+    return WORDS[word] / N
     
