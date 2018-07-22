@@ -13,5 +13,5 @@ In the future, this dictionary will also be used to incorporate common people na
 * Navigate to the root of the project folder and type this on your terminal: ```python setup.py install```
 
 
-# Ackhowledgement
+# Acknowledgement
 * The auto correction module is inspired from Peter Norvig's article on writing an auto-corrector: ```https://norvig.com/spell-correct.html```
