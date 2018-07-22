@@ -29,6 +29,13 @@ with open('/usr/share/dict/words', 'r') as wordFile:
 
 wordFile.close()
 
+with open('/Users/shivabhusal/Documents/GIT/Speller-Checker/texts/wordList2.txt','r') as wordFile2:
+    for word in wordFile2:
+        word = word.strip()
+        wordSet.add(word)
+
+wordFile2.close()
+
 texFile = sys.argv[1]
 
 with open(texFile, 'r') as wordFile:
