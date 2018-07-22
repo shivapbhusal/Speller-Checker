@@ -9,7 +9,8 @@ def getAllWords(text):
     return re.findall(r'\w+', text.lower())
 
 def removeExtraChars(word):
-    extraCharList = ['\\','.','}','{','*','}',',','?']
+    extraCharList = ['\\','.','}','{','*','}',',','?',';','{textit}','\xe2',
+                     '\x80','\x94','\x99t','\x99s','\x9d','\x9c']
     for extraChar in extraCharList:
         word = word.replace(extraChar, '')
     return word
